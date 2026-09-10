@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AIDATA Web Sitesi
 
-## Getting Started
+İstiklal Bilim ve Teknoloji Üniversitesi Yapay Zeka ve Veri Bilimi Öğrenci Topluluğu'nun resmi web sitesi.
 
-First, run the development server:
+Next.js (App Router) + TypeScript + Tailwind CSS ile geliştirilmiştir. İçerik, ayrı veri dosyalarında tutulur — kod bilmeyen bir yönetim kurulu üyesi bile bu dosyaları düzenleyerek siteyi güncelleyebilir.
+
+## Yerel Ortamda Çalıştırma
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Site `http://localhost:3000` adresinde açılır.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## İçerik Nasıl Güncellenir?
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Tüm topluluk bilgileri `src/lib/data/` klasöründeki dosyalarda tutulur:
 
-## Learn More
+| Dosya | Ne içerir |
+|---|---|
+| `site.ts` | Topluluk adı, sloganlar, iletişim bilgileri, sosyal medya linkleri, "Neler Yapıyoruz" listesi, vizyon metni, kilometre taşları |
+| `events.ts` | Geçmiş ve yaklaşan etkinlikler (tarih, yer, açıklama, fotoğraflar) |
+| `board.ts` | Danışman, yönetim kurulu ve denetim kurulu üyeleri |
+| `projects.ts` | TÜBİTAK, TEKNOFEST gibi devam eden projeler |
 
-To learn more about Next.js, take a look at the following resources:
+### Yeni bir etkinlik eklemek
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. `src/lib/data/events.ts` dosyasını aç.
+2. `events` dizisine yeni bir nesne ekle (mevcutlardan birini kopyalayıp düzenlemek en kolayı).
+3. Etkinliğin fotoğrafı varsa, görseli `public/images/<etkinlik-klasörü>/` altına koy ve `images` alanında yolunu belirt.
+4. Henüz tarihi geçmemiş bir etkinlik için `status: "upcoming"` kullan; geçmiş etkinlikler için `status: "past"`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Yönetim kurulunu güncellemek
 
-## Deploy on Vercel
+`src/lib/data/board.ts` dosyasındaki `boardMembers` dizisini güncelle. Her yıl genel kurul sonrası bu listeyi güncellemeyi unutma.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Fotoğraf eklerken dikkat
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Sadece `.jpg`, `.jpeg`, `.png` veya `.webp` formatlarını kullan. **HEIC formatı (iPhone varsayılanı) web'de çalışmaz** — iPhone'da "Ayarlar > Kamera > Formatlar > Uyumluluğun En Yüksek Olduğu Ayar" seçeneğini kullanarak fotoğrafları doğrudan JPEG çekebilirsiniz, ya da paylaşmadan önce dönüştürün.
+- Fotoğrafları küçük boyutlu (birkaç MB altı) tutmaya çalışın; Next.js otomatik olarak optimize eder ama kaynak dosya çok büyükse yine de yavaşlar.
+
+### Logoyu güncellerken dikkat
+
+Logo `public/brand/logo.png` dosyasıdır ve hem site içinde hem de tarayıcı favicon'u (sekme ikonu) olarak kullanılır. Logoyu değiştirirsen:
+
+1. Yeni dosyayı `public/brand/logo.png` üzerine kaydet (şeffaf arka planlı PNG olmalı — arka plan kaldırma araçları bazen logonun İÇİNDEKİ beyaz alanları da şeffaf yapıp bozabiliyor, yeni dosyayı koyu bir sayfa arka planında da kontrol et).
+2. `src/app/layout.tsx` dosyasındaki `FAVICON_VERSION` sabitini bir artır (örn. `"2"` → `"3"`). Bunu atlarsan tarayıcılar sekmedeki eski favicon'u göstermeye devam edebilir — favicon önbelleği normal sayfa önbelleğinden çok daha inatçıdır, sert yenileme (Ctrl+Shift+R) hatta bilgisayarı yeniden başlatmak bile onu temizlemeyebilir.
+
+## Yayınlama (Deploy)
+
+En kolay yol [Vercel](https://vercel.com) üzerinden ücretsiz yayınlamaktır:
+
+1. Bu projeyi bir GitHub reposuna yükle.
+2. [vercel.com](https://vercel.com) üzerinden GitHub hesabınla giriş yap.
+3. "New Project" ile bu repoyu seç, ayarları değiştirmeden "Deploy" butonuna bas.
+4. Her `main` dalına yapılan push otomatik olarak siteyi günceller.
+
+## Proje Yapısı
+
+```
+src/
+  app/            → Sayfalar (Anasayfa, Hakkımızda, Etkinlikler, Projelerimiz, Yönetim Kurulu, İletişim)
+  components/     → Tekrar kullanılan arayüz bileşenleri (Navbar, Footer, kartlar)
+  lib/data/       → Güncellenmesi gereken tüm içerik burada
+public/
+  brand/          → Logo dosyaları
+  images/         → Etkinlik fotoğrafları
+```
+
+## Sorular
+
+Site ile ilgili teknik sorular için mevcut yönetim kuruluna veya siteyi kuran kişiye ulaşabilirsiniz. İçerik güncellemeleri için yukarıdaki tabloyu takip etmeniz yeterlidir.

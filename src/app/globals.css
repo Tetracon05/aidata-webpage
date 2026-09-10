@@ -1,26 +1,122 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f6f8fb;
+  --foreground: #0b1830;
+
+  --navy-950: #060e1c;
+  --navy-900: #0a1729;
+  --navy-800: #0f2138;
+  --navy-700: #16304c;
+  --navy-600: #1e3f60;
+  --navy-500: #284c70;
+  --navy-400: #3d638a;
+  --navy-300: #6786a4;
+  --navy-200: #9cb4c9;
+  --navy-100: #cdd9e5;
+
+  --gold-600: #c17f00;
+  --gold-500: #f0a020;
+  --gold-400: #f7b23e;
+  --gold-300: #ffcb70;
+  --gold-200: #ffe3ad;
+
+  --sky-600: #3d7fa6;
+  --sky-500: #5f9bbf;
+  --sky-400: #7fb2d1;
+  --sky-300: #a9cde3;
+  --sky-200: #d3e8f3;
+
+  --card: #ffffff;
+  --card-foreground: #0b1830;
+  --muted: #eaf0f6;
+  --muted-foreground: #4b6178;
+  --border: #dbe4ee;
+
+  --radius: 1rem;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --color-navy-950: var(--navy-950);
+  --color-navy-900: var(--navy-900);
+  --color-navy-800: var(--navy-800);
+  --color-navy-700: var(--navy-700);
+  --color-navy-600: var(--navy-600);
+  --color-navy-500: var(--navy-500);
+  --color-navy-400: var(--navy-400);
+  --color-navy-300: var(--navy-300);
+  --color-navy-200: var(--navy-200);
+  --color-navy-100: var(--navy-100);
+
+  --color-gold-600: var(--gold-600);
+  --color-gold-500: var(--gold-500);
+  --color-gold-400: var(--gold-400);
+  --color-gold-300: var(--gold-300);
+  --color-gold-200: var(--gold-200);
+
+  --color-sky-600: var(--sky-600);
+  --color-sky-500: var(--sky-500);
+  --color-sky-400: var(--sky-400);
+  --color-sky-300: var(--sky-300);
+  --color-sky-200: var(--sky-200);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+
+  --font-heading: var(--font-space-grotesk);
+  --font-sans: var(--font-dm-sans);
+
+  --radius-xl: var(--radius);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading), var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+::selection {
+  background: var(--gold-400);
+  color: var(--navy-950);
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
 }
