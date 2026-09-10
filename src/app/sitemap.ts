@@ -12,7 +12,7 @@ const routes = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://aidata-istiklal.vercel.app";
+  const base = "https://www.ibtuaidata.com.tr";
   return routes.map((route) => ({
     url: `${base}${route}`,
     lastModified: new Date(),

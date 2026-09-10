@@ -29,7 +29,7 @@ const FAVICON_VERSION = "2";
 const faviconUrl = `/brand/logo.png?v=${FAVICON_VERSION}`;
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://aidata-istiklal.vercel.app"),
+  metadataBase: new URL("https://www.ibtuaidata.com.tr"),
   title: {
     default: `${site.shortName} — ${site.name}`,
     template: `%s — ${site.shortName}`,
@@ -56,6 +56,23 @@ export const metadata: Metadata = {
   },
 };
 
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: site.fullBrand,
+  alternateName: site.name,
+  url: "https://www.ibtuaidata.com.tr",
+  logo: "https://www.ibtuaidata.com.tr/brand/logo.png",
+  description: site.description,
+  email: site.email,
+  foundingDate: "2025-02-26",
+  sameAs: [site.social.instagram, site.social.x],
+  parentOrganization: {
+    "@type": "CollegeOrUniversity",
+    name: site.university,
+  },
+};
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
@@ -63,6 +80,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${spaceGrotesk.variable} ${dmSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         <ScrollProgress />
         <Navbar />
         <main className="flex-1">{children}</main>

@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://aidata-istiklal.vercel.app/sitemap.xml",
+    sitemap: "https://www.ibtuaidata.com.tr/sitemap.xml",
   };
 }
