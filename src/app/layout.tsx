@@ -85,6 +85,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${spaceGrotesk.variable} ${dmSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
+        {/* iOS Safari tints the status-bar/notch area from the background-color of
+            the nearest fixed element it finds, ignoring theme-color and html/body —
+            the navbar's own fixed wrapper is transparent (its navy fill is on an
+            inset pill), so without this Safari falls back to a white status bar. */}
+        <div
+          className="pointer-events-none fixed inset-x-0 top-0 z-40 bg-navy-950"
+          style={{ height: "max(env(safe-area-inset-top), 44px)" }}
+          aria-hidden="true"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
