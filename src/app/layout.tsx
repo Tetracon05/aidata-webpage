@@ -25,7 +25,7 @@ const dmSans = DM_Sans({
 // caches impossible to bust. Serving it as a plain static asset instead, with
 // a version query string we control, guarantees a fresh URL whenever the logo
 // changes — bump FAVICON_VERSION any time the logo file is replaced.
-const FAVICON_VERSION = "2";
+const FAVICON_VERSION = "3";
 const faviconUrl = `/brand/logo.png?v=${FAVICON_VERSION}`;
 
 export const metadata: Metadata = {
