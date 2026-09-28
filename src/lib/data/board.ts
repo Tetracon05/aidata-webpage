@@ -57,13 +57,6 @@ export const boardMembers: BoardMember[] = [
     image: "/images/board/enes-birden.jpg",
   },
   {
-    name: "Mehmet Mücahit Tabur",
-    role: "Üye",
-    roleGroup: "yonetim",
-    department: "Yazılım Mühendisliği",
-    initials: "MT",
-  },
-  {
     name: "Emine Yenil",
     role: "Üye",
     roleGroup: "yonetim",
