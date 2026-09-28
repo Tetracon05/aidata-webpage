@@ -4,6 +4,7 @@ export type BoardMember = {
   roleGroup: "danisman" | "yonetim" | "denetim";
   department?: string;
   initials: string;
+  image?: string;
 };
 
 export const advisor: BoardMember = {
@@ -21,6 +22,7 @@ export const boardMembers: BoardMember[] = [
     roleGroup: "yonetim",
     department: "Yazılım Mühendisliği",
     initials: "OK",
+    image: "/images/board/oguz-karagoz.jpg",
   },
   {
     name: "Emre Ayözcan",
@@ -28,6 +30,7 @@ export const boardMembers: BoardMember[] = [
     roleGroup: "yonetim",
     department: "Yazılım Mühendisliği",
     initials: "EA",
+    image: "/images/board/emre-ayozcan.jpg",
   },
   {
     name: "Ece Nur Arı",
@@ -35,6 +38,7 @@ export const boardMembers: BoardMember[] = [
     roleGroup: "yonetim",
     department: "Yazılım Mühendisliği",
     initials: "EA",
+    image: "/images/board/ece-nur-ari.jpg",
   },
   {
     name: "Ahmethan Altuner",
@@ -42,6 +46,15 @@ export const boardMembers: BoardMember[] = [
     roleGroup: "yonetim",
     department: "Yazılım Mühendisliği",
     initials: "AA",
+    image: "/images/board/ahmethan-altuner.jpg",
+  },
+  {
+    name: "Enes Birden",
+    role: "Sekreter",
+    roleGroup: "yonetim",
+    department: "Yazılım Mühendisliği",
+    initials: "EB",
+    image: "/images/board/enes-birden.jpg",
   },
   {
     name: "Mehmet Mücahit Tabur",
@@ -56,6 +69,7 @@ export const boardMembers: BoardMember[] = [
     roleGroup: "yonetim",
     department: "Yazılım Mühendisliği",
     initials: "EY",
+    image: "/images/board/emine-yenil.jpg",
   },
 ];
 
@@ -73,12 +87,5 @@ export const auditBoard: BoardMember[] = [
     roleGroup: "denetim",
     department: "Yazılım Mühendisliği",
     initials: "AU",
-  },
-  {
-    name: "Enes Birden",
-    role: "Denetim Kurulu Üyesi",
-    roleGroup: "denetim",
-    department: "Yazılım Mühendisliği",
-    initials: "EB",
   },
 ];

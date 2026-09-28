@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "motion/react";
 import type { BoardMember } from "@/lib/data/board";
 import { useTilt } from "@/lib/use-tilt";
@@ -26,13 +27,17 @@ export function BoardCard({ member }: { member: BoardMember }) {
       {!reduced && <TiltGlow background={glowBackground} visible={hovering} />}
 
       <motion.div
-        className={`flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br text-xl font-bold text-white ${ringByGroup[member.roleGroup]}`}
+        className={`relative flex h-20 w-20 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br text-xl font-bold text-white ${ringByGroup[member.roleGroup]}`}
         aria-hidden="true"
         animate={reduced ? undefined : { y: hovering ? -4 : 0 }}
         style={reduced ? undefined : { transform: "translateZ(30px)" }}
         transition={{ type: "spring", stiffness: 300, damping: 18 }}
       >
-        {member.initials}
+        {member.image ? (
+          <Image src={member.image} alt="" fill sizes="80px" className="object-cover" />
+        ) : (
+          member.initials
+        )}
       </motion.div>
       <div style={reduced ? undefined : { transform: "translateZ(20px)" }}>
         <p className="font-heading text-base font-bold text-navy-950">{member.name}</p>
