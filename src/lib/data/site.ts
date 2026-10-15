@@ -16,7 +16,7 @@ export const site = {
   email: "istiklal.aidata@gmail.com",
   membershipFormUrl: "https://forms.gle/q79SgR3QwscbyeDz6",
   social: {
-    instagram: "https://www.instagram.com/kiu.aidata/",
+    instagram: "https://www.instagram.com/ibtu.aidata/",
     x: "https://x.com/aidata_istiklal",
   },
   description:

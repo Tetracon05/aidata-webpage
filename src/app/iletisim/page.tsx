@@ -93,7 +93,7 @@ export default function ContactPage() {
                 <InstagramIcon size={20} className="text-gold-400" />
               </span>
               <span className="font-heading text-sm font-bold text-navy-950">Instagram</span>
-              <span className="text-xs text-muted-foreground">@kiu.aidata</span>
+              <span className="text-xs text-muted-foreground">@ibtu.aidata</span>
             </a>
           </TiltCard>
 
